@@ -1,0 +1,61 @@
+﻿@using WebBookStore.Models.WebBookStore
+@model SANPHAM
+@{
+     ViewBag.Title = "Details";
+     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<form action="/admin/products" method="post">
+     <div class="row content">
+          <div class="col-xs-12 col-sm-6 col-md-5">
+              <div class="wrapper pull-right">
+                  <div>
+                      <img src="~/Assets/images/@Model.Anh" class="img-responsive" />
+                  </div>
+                  @*<div class="pull-right">
+             <button id="supplier-edit" onclick="form.action = '@Url.RouteUrl(new { controller = "/", area = "" })Admin/Products/Edit/@Model.ID'" class="btn btn-warning btn-sm"><i class="fa fa-pencil icon-white"></i></button>
+
+             <button type="button" class="btn delete-asset btn-danger btn-sm" onclick="form.action = '@Url.RouteUrl(new { controller = "/", area = "" })Admin/Product/Delete/@Model.ID'" data-toggle="modal" data-target="#confirmDelete" data-title="Delete item @Model.ID" data-message="Are you sure you want to delete item @Model.ID ?">
+                  <i class="glyphicon glyphicon-trash"></i>
+             </button>
+        </div>
+                  *@
+              </div>
+          </div>
+
+
+          <div class="col-sm-6 col-md-7">
+               <div class="product-name">@Model.TenSanPham</div>
+               <div class="spacing-20"></div>
+               <div class="spacing-20"></div>
+               <div class="wrap-pro-info">
+                    <div>
+                         <span>Mã sách:</span>
+                         <strong><span>@Model.TenSanPham - @Model.ID</span></strong>
+                    </div>
+                    <div>
+                         Danh mục: @Model.DANHMUCSACH.TenDMSach
+                    </div>
+                    <div>
+                         Tác giả: @Model.TACGIA.HoVaTen
+                    </div>
+                    <div>
+                         Nhà xuất bản: @Model.NHAXUATBAN.TenNXB
+                    </div>
+                    <div>
+                         Số lượng: @Model.SoLuong
+                    </div>
+                    <div>
+                         <span>Giá:</span> <span class="product-name"> @Model.GiaSanPham</span>
+                    </div>
+                    <div>
+                         Lượt xem: @Model.LuotXem
+                    </div>
+                    <div>
+                         Mô tả: @Model.MoTa
+                    </div>
+               </div>
+          </div>
+     </div>
+     
+</form>

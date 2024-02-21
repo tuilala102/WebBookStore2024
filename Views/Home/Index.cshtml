@@ -1,0 +1,91 @@
+﻿@using WebBookStore.Models.WebBookStore
+@model IEnumerable<WebBookStore.Models.WebBookStore.DANHMUCSACH>
+
+@{ ViewBag.Title = "WebBookStore";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<!-- ========================================== SECTION – HERO ========================================= -->
+<div id="hero">
+    <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+        @foreach (SANPHAM pr in ViewBag.RandomProducts)
+        {
+
+            var name = pr.TenSanPham;
+
+<div class="item">
+    <a href="~/CNTT1_10/Detail/@pr.ID">
+        <img src="~/Assets/images/@pr.Anh" class="img-responsive" style="width:350px; " />
+    </a>
+
+    <div class="container-fluid">
+        <div class="caption bg-color vertical-center text-left">
+            <div class="big-text fadeInDown-1">
+                <span class="highlight">@pr.TenSanPham</span>
+            </div>
+
+            <div class="excerpt fadeInDown-2 hidden-xs">
+
+                <span class="numeral-init">@pr.GiaSanPham</span>
+
+            </div>
+            <div class="add-to-cart">
+                <h4><a class="btn btn-warning" href="/them-gio-hang?productId=@pr.ID&quantity=1">Mua ngay</a></h4>
+            </div>
+        </div><!-- /.caption -->
+    </div><!-- /.container-fluid -->
+</div><!-- /.item -->}
+    </div><!-- /.owl-carousel -->
+</div>
+<!-- ========================================= SECTION – HERO : END ========================================= -->
+<!-- ============================================== INFO BOXES ============================================== -->
+<div class="info-boxes wow fadeInUp">
+    <div class="info-boxes-inner">
+        <div class="row">
+            <div class="col-md-6 col-sm-4 col-lg-4">
+                <div class="info-box">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="icon fa fa-dollar"></i>
+                        </div>
+                        <div class="col-xs-10">
+                            <h4 class="info-box-heading green">Đổi mới</h4>
+                        </div>
+                    </div>
+                    <h6 class="text">Đổi mới trong 30 ngày.</h6>
+                </div>
+            </div><!-- .col -->
+
+            <div class="hidden-md col-sm-4 col-lg-4">
+                <div class="info-box">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="icon fa fa-truck"></i>
+                        </div>
+                        <div class="col-xs-10">
+                            <h4 class="info-box-heading orange">Giao hàng miễn phí</h4>
+                        </div>
+                    </div>
+                    <h6 class="text">miễn phí giao nội thành hà nội</h6>
+                </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6 col-sm-4 col-lg-4">
+                <div class="info-box">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="icon fa fa-gift"></i>
+                        </div>
+                        <div class="col-xs-10">
+                            <h4 class="info-box-heading red">Giảm giá</h4>
+                        </div>
+                    </div>
+                    <h6 class="text">Giảm giá sản phẩm lên đến 20%</h6>
+                </div>
+            </div><!-- .col -->
+        </div><!-- /.row -->
+    </div><!-- /.info-boxes-inner -->
+
+</div><!-- /.info-boxes -->
+<!-- ============================================== INFO BOXES : END ============================================== -->
+<!-- ============================================== PRODUCT CAT============================================== -->
+@{Html.RenderAction("DanhSachSanPham", "Home");}

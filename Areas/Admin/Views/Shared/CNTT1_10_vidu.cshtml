@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Admin Web Book Store</title>
+
+    @Styles.Render("~/bundles/LTE211CSS")
+    @Styles.Render("~/bundles/Modernizr")
+    @Styles.Render("~/bundles/JTableCSS")
+
+</head>
+<body class="skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        @Html.Partial("Partials/_Header");
+        @Html.Partial("Partials/_Aside");
+        <!-- Left side column. contains the logo and sidebar -->
+        <!-- Content Wrapper. Contains page content -->
+
+        <div class="content-wrapper">
+
+            <section class="content">
+                @RenderBody()
+            </section>
+
+
+        </div><!-- /.content-wrapper -->
+
+        @Html.Partial("Partials/_Footer");
+        @Html.Partial("Partials/_ControlSideBar");
+
+    </div><!-- ./wrapper -->
+
+    @Scripts.Render("~/bundles/LTE211JS")
+    @Scripts.Render("~/bundles/JTableJS")
+    @Scripts.Render("~/bundles/BSValidJS")
+
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+
+
+</html>

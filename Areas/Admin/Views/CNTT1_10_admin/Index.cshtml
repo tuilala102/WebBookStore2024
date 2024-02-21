@@ -1,0 +1,122 @@
+﻿@using WebBookStore.Models.WebBookStore
+@model DANHMUCSACH
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <form action="/admin" class="form-horizontal" method="post">
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Id">ID</label>
+            <div class="col-md-6">
+                @{ if (Model.ID > 0)
+                    {
+                        <input name="ID" class="form-control" value="@Model.ID" readonly />
+                    }
+                    else
+                    {
+                        <input name="ID" class="form-control" value="@ViewBag.LastId" readonly />
+                    }
+                }
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="TenDMSach">Tên danh mục</label>
+            <div class="col-md-6">
+                @Html.TextBox("TenDMSach", null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-offset-2">
+            <button type="submit" onclick="form.action='/Admin/Categories/Insert'" class="btn btn-primary box-button">
+                Thêm mới
+                <i class="fa fa-check icon-white"></i>
+            </button>
+
+            <button type="submit" onclick="form.action = '/Admin/Categories/Update'" class="btn btn-info box-button">
+                Cập nhật
+                <i class="fa fa-pencil icon-white"></i>
+            </button>
+            <button onclick="form.action = '/Admin/Categories/Index'" class="btn btn-default box-button">
+                Làm mới
+            </button>
+        </div>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Eumwqu3NKREk_prHUK1HpvdqKMSKALK-wC3TkdO2z1Yse1y3wSJxr0Skq3rcCu2F0JEEpZ_TWbaShZYqb37MfOL2LaY2HrgW7ozXqKk20Oni3gd94gDAt_gLV0vkBglkOFVuqIreyNWrniW-ff3ZcFamsaz1ZtaiXH8Y0sfwartYKEnw1LJEYLe_KvwoA_awQ" />
+    </form>
+</div>
+<hr style="color:red;" />
+<div style="color:red; text-align:right;">@ViewBag.thongbao</div>
+<div class="row" style="padding-left:10px;padding-right:10px;">
+    <form action="/admin/category" method="post">
+        <table class="table" id="domainTable">
+            <thead>
+                <tr>
+
+                    <th>
+                        <input type="checkbox" id="check-all-header" />
+                    </th>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Tên danh mục
+                    </th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DANHMUCSACH item in ViewBag.Category)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="ids" value="@item.ID" />
+                        </td>
+                        <td>
+                            @item.ID
+                        </td>
+                        <td>
+                            @item.TenDMSach
+                        </td>
+                        <td>
+                            <button id="supplier-edit" onclick="form.action = '/Admin/Categories/Edit/@item.ID'" class="btn btn-warning btn-sm"><i class="fa fa-pencil icon-white"></i></button>
+                            <button type="button" class="btn delete-asset btn-danger btn-sm" onclick="form.action = '/Admin/Categories/Delete/@item.ID'" data-toggle="modal" data-target="#confirmDelete" data-title="Xoá danh mục sách mã @item.ID" data-message="Bạn có muốn xoá danh mục sách mã @item.ID">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+        <button class="btn btn-lg btn-danger" type="button" onclick="form.action = '/Admin/Categories/DeleteSelected'" data-toggle="modal" data-target="#confirmDelete" data-title="Xoá các danh mục sách đã chọn " data-message="Bạn có muốn xoá các danh mục sách đã chọn ?">
+            Xoá Danh Mục Được Chọn
+            <i class="glyphicon glyphicon-trash"></i>
+        </button>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Eumwqu3NKREk_prHUK1HpvdqKMSKALK-wC3TkdO2z1Yse1y3wSJxr0Skq3rcCu2F0JEEpZ_TWbaShZYqb37MfOL2LaY2HrgW7ozXqKk20Oni3gd94gDAt_gLV0vkBglkOFVuqIreyNWrniW-ff3ZcFamsaz1ZtaiXH8Y0sfwartYKEnw1LJEYLe_KvwoA_awQ" />
+    </form>
+</div>
+
+
+<!-- Modal Dialog -->
+<div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Delete Parmanently</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure about this ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Huỷ</button>
+                <button type="button" class="btn btn-danger" id="confirm">Xoá</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

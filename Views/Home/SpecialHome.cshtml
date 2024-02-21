@@ -1,0 +1,60 @@
+﻿@model List<WebBookStore.Models.WebBookStore.SANPHAM>
+<div class="sidebar-widget outer-bottom-small wow fadeInUp">
+    <h3 class="section-title">KHUYẾN MÃI ĐẶC BIỆT </h3>
+
+    <div class="sidebar-widget-body outer-top-xs">
+        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+            @foreach(var p in Model)
+            {
+            <div class="products" style="float:left">
+
+                <div class="product">
+                    <div class="product-image">
+                        <div class="image">
+                            <a href="~/Product/Detail/@p.ID">
+                                <img src="~/Assets/images/@p.Anh"
+                                     alt="" style="height:150px;" class="img-responsive" id="">
+                            </a>
+
+                        </div><!-- /.image -->
+
+                        <div class="tag hot"><span>hot</span></div>
+                    </div><!-- /.product-image -->
+
+
+                    <div class="product-info text-left">
+                        <h3 class="name">
+                            <a href="Detail.html">
+                                @p.TenSanPham
+                            </a>
+
+                        </h3>
+
+                        <div class="rating rateit-small hidden"></div>
+                        <div class="description"></div>
+
+                        <div class="product-price" style="margin-top:5px">
+                            <span class="price numeral-init">
+                                @Html.Raw(p.GiaSanPham * (1 - p.KhuyenMai))
+                            </span>
+                            @if (p.KhuyenMai > 0)
+                                            {
+                            <span class="price-before-discount numeral-init" style="font-size:11px">@p.GiaSanPham</span>
+                                            }
+
+                        </div><!-- /.product-price -->
+
+                    </div><!-- /.product-info -->
+                    <div class="add-to-cart">
+                        <h4><a class="btn btn-warning" href="/them-gio-hang?productId=@p.ID&quantity=1">Thêm vào giỏ</a></h4>
+                    </div>
+                </div><!-- /.product -->
+
+            </div><!-- /.products -->
+            }
+            
+        </div>
+
+    </div><!-- /.sidebar-widget-body -->
+
+</div><!-- /.sidebar-widget -->

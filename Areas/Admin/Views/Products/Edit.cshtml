@@ -1,0 +1,241 @@
+﻿@using WebBookStore.Models.WebBookStore
+@model SANPHAM
+@{
+     ViewBag.Title = "Edit";
+     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Cập nhật</h4>
+<form action="/Admin/Products/Edit" class="form-horizontal" enctype="multipart/form-data" id="form-product-insert" method="post" role="form">
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="Id">Id</label>
+          <div class="col-md-8">
+               <input class="form-control" value="@Model.ID" type="number" data-val="true" data-val-required="The Id field is required." id="Id" name="Id" />
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="TenSanPham">Tên sách</label>
+          <div class="col-md-8">
+               <input class="form-control" data-val="true" data-val-length="The field Name must be a string with a maximum length of 40." data-val-length-max="40" data-val-required="The Name field is required." id="Name" name="TenSanPham" type="text" value="@Model.TenSanPham" />
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="MaTacGia">Tác giả</label>
+          <div class="col-md-8">
+               <select id="CategoryId" name="MaTacGia" >
+                    <option value="@Model.TACGIA.ID" selected="selected">@Model.TACGIA.HoVaTen</option>
+                    @foreach (TACGIA item in ViewBag.Author)
+                    {
+                         <option value="@item.ID">@item.HoVaTen</option>
+                    }
+               </select>
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="GiaSanPham">Giá</label>
+          <div class="col-md-8">
+               <input class="form-control" data-val="true" data-val-number="The field PriceP must be a number." data-val-range="Price must be between 0 and 100 000 000 000.00" data-val-range-max="100000000000" data-val-range-min="0" data-val-required="The GiaSanPham field is required." id="PriceP" name="GiaSanPham" type="text" value="@Model.GiaSanPham" />
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="Image">Hình ảnh</label>
+          <div class="col-md-8">
+               <input data-val="true" data-val-required="The Image field is required." id="Image" name="Anh" type="text" value="@Model.Anh" data-bv-field="Image">
+               <input name="file" style="display:inline" type="file" id="btnSelectImg" value="Choose Picture ..." />
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="NgaySanXuat">Ngày sản xuất</label>
+          <div class="col-md-8">
+               <div class="input-group input-append date" id="dateRangePicker">
+                    <input class="form-control" type="datetime-local" data-val="true" data-val-required="The ProductDate field is required." id="ProductDate" name="NgaySanXuat" />
+                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+               </div>
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="MaDMSach">Danh mục sách</label>
+          <div class="col-md-8">
+               <select id="CategoryId" name="MaDMSach">
+                    <option value="@Model.DANHMUCSACH.ID" selected="selected">@Model.DANHMUCSACH.TenDMSach</option>
+                    @foreach (DANHMUCSACH item in ViewBag.Category)
+                    {
+                         <option value="@item.ID">@item.TenDMSach</option>
+                    }
+               </select>
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="MaNXB">Nhà xuất bản</label>
+          <div class="col-md-8">
+               <select data-val="true" data-val-length="The field SupplierId must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The SupplierId field is required." id="SupplierId" name="MaNXB">
+                    <option value="@Model.NHAXUATBAN.ID" selected="selected">@Model.NHAXUATBAN.TenNXB</option>
+                    @foreach (NHAXUATBAN item in ViewBag.Suplier)
+                    {
+                         <option value="@item.ID">@item.TenNXB</option>
+                    }
+               </select>
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="SoLuong">Số lượng</label>
+          <div class="col-md-8">
+               <input class="form-control" data-val="true" data-val-required="The Quantity field is required." id="Quantity" name="SoLuong" type="text" value="@Model.SoLuong" />
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="KhuyenMai">Khuyến mãi</label>
+          <div class="col-md-8">
+               <input class="form-control" data-val="true" data-val-number="The field Discount must be a number." data-val-required="The Discount field is required." id="Discount" name="KhuyenMai" type="text" value="@Model.KhuyenMai" />
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="col-md-2 control-label" for="Description">Mô tả</label>
+          <div class="col-md-8">
+               <textarea class="form-control ckeditor" cols="55" data-val="true" data-val-length="The field Description must be a string with a maximum length of 2000." data-val-length-max="2000" id="Description" name="MoTa" rows="3" >
+                    @Model.MoTa
+               </textarea>
+          </div>
+     </div>
+     <button type="submit" onclick="form.action='/Admin/Products/Update'" class="btn btn-primary box-button col-md-offset-2">
+          Cập Nhật
+          <i class="fa fa-check icon-white"></i>
+     </button>
+     <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Eumwqu3NKREk_prHUK1HpuHopk7liVmQvGx-vh5rUyNcQriwSgF2YGxzhMncl-oT03I55ZTT2Qr7g7Con-oFxBuVblelSPQb0DENJWt8fS3ZgP14nLopTLHXrs5_jxNjVQs0cRoIwsH1pBSykxYUQQtB1gACAHV4wXVtZZdF3bx5zEN2MahrLPJsLoojcSBQA" />
+     <input name="Available" type="hidden" value="false" />
+     <input name="Special" type="hidden" value="false" />
+     <input name="Latest" type="hidden" value="false" />
+</form>
+
+
+@section scripts{
+     <script src="~/Scripts/maskedInput/jquery.maskedinput.js"></script>
+     <script src="~/js/setup_js_product_admin.js"></script>
+     <script type="text/javascript">
+
+          $(function () {
+
+               var id = $("#SupplierId").val();
+               $("#SupplierId-Text").val(id);
+               $('#PriceP').mask("000,000,000,000,000,000", { reverse: true });
+               $('#ProductDate').mask('99/99/9999');
+               $("#SupplierId").change(function () {
+                    var id = $(this).val();
+                    $("#SupplierId-Text").val(id);
+               });
+
+          })
+     </script>
+
+     <script type="text/javascript">
+
+     </script>
+
+     <script type="text/javascript">
+          $(document).ready(function () {
+
+               $('#dateRangePicker')
+                    .datepicker({
+                         format: 'dd/mm/yyyy',
+
+                    });
+
+               $('#form-product-insert').bootstrapValidator({
+                    message: 'This value is not valid',
+                    feedbackIcons: {
+                         valid: 'glyphicon glyphicon-ok',
+                         invalid: 'glyphicon glyphicon-remove',
+                         validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                         Name: {
+
+                              validators: {
+                                   notEmpty: {
+                                        message: 'The Name is required and cannot be empty'
+                                   },
+
+
+                              }
+                         },
+
+                         UnitPrice: {
+
+                              validators: {
+                                   notEmpty: {
+                                        message: 'The Unit Price is required and cannot be empty'
+                                   },
+
+
+                              }
+                         },
+
+                         Image: {
+
+                              validators: {
+                                   notEmpty: {
+                                        message: 'The Image is required and cannot be empty'
+                                   },
+
+
+                              }
+                         },
+
+
+                         ProductDate: {
+
+                              validators: {
+                                   notEmpty: {
+                                        message: 'The Product Date is required and cannot be empty'
+                                   },
+                                   date: {
+                                        format: 'DD/MM/YYYY',
+                                        message: 'in valid date time. format The dd/mm/yyyy'
+                                   },
+
+
+                              }
+                         },
+
+                         Quantity: {
+
+                              validators: {
+                                   notEmpty: {
+                                        message: 'The Quantity is required and cannot be empty'
+                                   },
+
+
+                              }
+                         },
+
+                         Discount: {
+
+                              validators: {
+                                   notEmpty: {
+                                        message: 'The Discount is required and cannot be empty'
+                                   },
+
+
+                              }
+                         },
+
+                         View: {
+
+                              validators: {
+                                   notEmpty: {
+                                        message: 'The View is required and cannot be empty'
+                                   },
+
+
+                              }
+                         },
+
+
+                    }
+               });
+          });
+     </script>
+}
+
+
+

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WebBookStore.Models.WebBookStore.DANHMUCSACH>
+
+<!-- ============================================== SIDEBAR ============================================== -->
+<!-- ================================== TOP NAVIGATION ================================== -->
+
+<div class="side-menu animate-dropdown outer-bottom-xs">
+    <div class="head"><i class="icon fa fa-align-justify fa-fw"></i>Thể loại sách</div>
+    @foreach (var item in Model)
+    {
+        <nav class="yamm megamenu-horizontal" role="navigation">
+            <ul class="nav">
+                <li class="dropdown menu-item">
+                    <a href="~/Product/HienThiTheoLoaiSach/@item.ID">@item.TenDMSach</a>
+                </li><!-- /.menu-item -->
+            </ul><!-- /.nav -->
+        </nav><!-- /.megamenu-horizontal -->
+    }
+</div><!-- /.side-menu -->
+<!-- ============================================== COLOR: END ============================================== -->
+<!-- /.sidemenu-holder -->
+<!-- ============================================== SIDEBAR : END ============================================== -->

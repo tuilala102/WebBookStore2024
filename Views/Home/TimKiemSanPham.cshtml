@@ -1,0 +1,67 @@
+﻿@model PagedList.IPagedList<WebBookStore.Models.WebBookStore.SANPHAM>
+@using PagedList.Mvc;
+@using PagedList;
+@{ ViewBag.Title = "TimKiemSanPham";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+@{ ViewBag.Title = "SanPhamHeader";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+@foreach (var m in Model)
+{
+
+
+<div class="col-sm-3 col-xs-6" style="float:left;height:270px">
+
+    <div class="product">
+        <div class="product-image">
+            <div class="image">
+                <a href="~/Product/Detail/@m.ID"><img src="~/Assets/images/@m.Anh" alt="" class="img-responsive" style="height:150px;" id="@m.ID"></a>
+
+
+
+            </div><!-- /.image -->
+            @if (m.DacBiet == true)
+            {
+<div class="tag hot"><span>hot</span></div>                }
+
+            @if (m.KhuyenMai > 0)
+            {
+<div class="tag sale"><span>sale</span></div>                }
+
+        </div><!-- /.product-image -->
+
+
+        <div class="product-info text-left">
+            <h3 class="name">
+                <a href="~/Product/Detail/@m.ID">
+                    @m.TenSanPham
+                </a>
+
+            </h3>
+
+
+
+
+            <div class="description"></div>
+
+            <div class="product-price" style="margin-top:5px">
+                <span class="price numeral-init">
+                    @Html.Raw(m.GiaSanPham * (1 - m.KhuyenMai))
+                </span>
+                @if (m.KhuyenMai > 0)
+                {
+<span class="price-before-discount numeral-init" style="font-size:11px">@m.GiaSanPham</span>}
+
+            </div><!-- /.product-price -->
+
+        </div><!-- /.product-info -->
+        <div class="add-to-cart">
+            <h4><a class="btn btn-warning" href="/them-gio-hang?productId=@m.ID&quantity=1">Thêm vào giỏ</a></h4>
+        </div>
+    </div><!-- /.product -->
+
+</div><!-- /.products -->}
+
+<div class="col-md-12 text-right clear-both">
+    @Html.PagedListPager(Model, page => Url.Action("TimKiemSanPham", new { page, @keywork = @ViewBag.Search }))
+</div>

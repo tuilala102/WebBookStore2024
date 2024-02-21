@@ -1,0 +1,58 @@
+﻿
+@model List<WebBookStore.Models.CartItem>
+@{ ViewBag.Title = "Giỏ Hàng";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+@section jsFooter{
+
+    <script src="~/Assets/js/Controller/CartController.js"></script>
+}
+<h2>Đơn hàng</h2>
+<hr />
+@if (Model.Count > 0)
+{
+<table class="table table-striped table-bordered">
+    <tr>
+        <th style="width: 3%;">Id</th>
+        <th style="width: 30%;">Tên</th>
+        <th style="width: 15%;">Giá</th>
+        <th style="width: 5%;">Giảm giá</th>
+        <th style="width: 3%;">Số lượng</th>
+        <th style="width: 15%;">Giá trị</th>
+        <th style="width: 5%;"></th>
+    </tr>
+    @foreach (var p in Model)
+    {
+<tr>
+    <td>@p.product.ID</td>
+    <td>@p.product.TenSanPham</td>
+    <td><span class="numeral-init">@p.product.GiaSanPham</span></td>
+    <td>@p.product.KhuyenMai.ToString().Replace(",", ".")</td>
+    <td><input type="text" class="txtQuantity" value="@p.Quantity" data-id="@p.product.ID" size="2" /></td>
+    <td id="@p.product.ID"><span class="numeral-init">@(p.product.GiaSanPham * p.Quantity * (1 - p.product.KhuyenMai))</span></td>
+    <td>
+        <img class="btn-delete" href="#" data-id="@p.product.ID" src="~/Assets/Content/img/icons/Trash.png" />
+    </td>
+</tr>}
+    <tr>
+        <th colspan="5" style="text-align:right">Tổng tiền:</th>
+        <th class="nn-cart-total"><span class="numeral-init">@ViewBag.tong</span></th>
+        <th></th>
+    </tr>
+
+</table>
+                <div class="section-title group">
+                    @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+                    {
+    <div class="form-group">
+        <label>Địa chỉ</label>
+        <input name="diachi" class="form-control" />
+    </div>
+                        <div class="form-group">
+                            <label>Mô Tả</label>
+                            <input name="mota" class="form-control" />
+                        </div>
+                                           
+
+                                            <button type="submit" class="btn btn-info">Xác Nhận</button>}
+
+                </div>}

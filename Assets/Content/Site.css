@@ -1,0 +1,121 @@
+﻿
+.product .product-image .image{
+    border:1px solid #e3e3e3;
+    margin:5px 5px 5px 5px;
+}
+.product .product-image .image:hover{
+    border:1px solid #DA5E3F;
+    margin:5px 5px 5px 5px;
+}
+
+
+.image .img194 {
+    width:190px!important;
+    height:240px!important;
+    }
+
+
+.img100x120 {
+    width:100px!important;
+    height:120px!important;
+   vertical-align:auto;
+    }
+
+.img120x90 {
+    width:120px!important;
+    height:90px!important;
+   vertical-align:auto;
+    }
+
+
+.border-box{
+   border: 1px solid #e1e1e1;
+   width:105px!important;
+}
+.addProduct{
+
+}
+#addProduct{
+
+}
+#basketid{
+
+}
+
+.top-cart-row .dropdown-cart .dropdown-menu {
+  border: 1px solid #e1e1e1;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  float: right;
+  left: auto;
+  min-width: 0;
+  padding: 24px 22px;
+  right: 0;
+ // width: auto!important;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.highlighted{
+   background-color:#FF0!important;
+   
+}
+.showHide{
+    display:block;
+}
+.hide-item {
+  display: none !important;
+}
+
+
+.top-bar .cnt-tuser .list-inline > li > a {
+    padding: 6px 15px;
+    border-left: 1px solid #d4d4d4;
+    -webkit-transition: all 0.2s linear 0s;
+    -moz-transition: all 0.2s linear 0s;
+      color: #888;
+  display: inline-block;
+}
+.cnt-tuser
+{
+    float:left;
+}
+
+.top-bar .cnt-tuser .list-inline > li .dropdown-menu {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #e1e1e1;
+  top: 130%;
+  
+}
+
+
+.pagination>li>a, .pagination>li>span {
+
+  margin:2px;
+}
+#id-alert, #id-error{
+    position:absolute!important;
+    top:0px;
+    left:0;
+    width:100%;
+}
+.nav-text-head {
+font-family:'FjallaOneRegular';
+text-transform: uppercase;
+font-size:17px;
+
+}
+.nav-custom-1 {
+    background-color:#fed700 !important;
+    border-radius:0px;
+    
+}
+.input-custom-1 {
+border-radius:0px;
+}

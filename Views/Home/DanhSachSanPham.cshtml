@@ -1,0 +1,101 @@
+﻿@model List<WebBookStore.Models.WebBookStore.DANHMUCSACH>
+@using WebBookStore.Models.WebBookStore
+<section class="section featured-product wow fadeInUp">
+    @foreach (var p in Model)
+    {
+        var items = p.SANPHAMs.OrderBy(q => Guid.NewGuid()).Take(8).ToList();
+        <h3 class="section-title">@p.TenDMSach</h3>
+        <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+
+            @foreach (SANPHAM q in items)
+            {
+
+
+
+
+                <div class="item item-carousel">
+                    <div class="products">
+
+                        <div class="product">
+
+                            <div class="product-image">
+
+                                <div class="image">
+                                    <a href="~/Product/Detail/@q.ID">
+
+                                        <img src="~/Assets/images/@q.Anh"
+                                             alt="" style="height:200px" class="img-responsive" id="1006">
+                                    </a>
+
+
+                                </div><!-- /.image -->
+
+                                <div class="tag sale"><span>Sale</span></div>
+
+
+                            </div><!-- /.product-image -->
+
+
+                            <div class="product-info text-left">
+                                <h3 class="name"><a href="~/Product/Detail/@q.ID">@q.TenSanPham</a></h3>
+                                <div class="rating rateit-small hidden"></div>
+                                <div class="description"></div>
+
+                                <div class="product-price" style="margin-top:5px">
+                                    <span class="price numeral-init">
+                                        @Html.Raw(q.GiaSanPham * (1 - q.KhuyenMai))
+                                    </span>
+                                    @if (q.KhuyenMai > 0)
+                                    {
+                        <span class="price-before-discount numeral-init" style="font-size:11px">@q.GiaSanPham</span>}
+
+                                </div><!-- /.product-price -->
+
+                            </div><!-- /.product-info -->
+                            @* <div class="cart clearfix animate-effect">
+            <div class="action">
+                <ul class="list-unstyled">
+                    <li class="add-cart-button btn-group">
+                        <button class="btn btn-primary icon addProduct" data-id=""
+                                type="button">
+                            <i class="fa fa-shopping-cart"></i>
+                        </button>
+
+                        <button class="btn btn-primary addProduct" type="button"
+                                data-urladdcart="~/Cart/Add" data-id=""
+                                data-name="" data-url=""
+                                data-urlpartialcart="~/Cart/PartialCart">
+                            Thêm vào giỏ
+                        </button>
+
+                    </li>
+
+                    <li class="lnk wishlist hidden">
+                        <a class="add-to-cart" href="#" title="Wishlist">
+                            <i class="icon fa fa-heart"></i>
+                        </a>
+                    </li>
+
+                    <li class="lnk hidden">
+                        <a class="add-to-cart" href="#" title="Compare">
+                            <i class="fa fa-retweet"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- /.action -->
+        </div><!-- /.cart *@
+                        <div class="add-to-cart">
+                            <h4><a class="btn btn-warning" href="/them-gio-hang?productId=@q.ID&quantity=1">Thêm vào giỏ</a></h4>
+                        </div>
+                        </div><!-- /.product -->
+
+                    </div><!-- /.products -->
+                </div><!-- /.item -->
+
+
+
+            }
+        </div>
+    }
+
+</section><!-- /.section -->

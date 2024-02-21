@@ -1,0 +1,151 @@
+﻿@using WebBookStore.Common
+
+
+<header class="main-header">
+    <!-- Logo -->
+    <a href="~/Admin/Home" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><i class="fa fa-home"></i></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"> <i class="fa fa-home"></i> Trang chủ</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                @*@await Component.InvokeAsync("NotificationAdmin")*@
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-plus"></i> Thêm mới <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="~/Admin/Supplier/index">
+                                <i class="fa fa-barcode"></i>
+                                Nhà xuất bản
+                            </a>
+                        </li>
+                        @*<li>
+                                <a href="~/admin/master">
+                                    <i class="fa fa-user-plus"></i>
+                                    Người dùng
+                                </a>
+                            </li>*@
+                        <li>
+                            <a href="~/Admin/Categories">
+                                <i class="fa fa-credit-card"></i> Danh mục sách
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Admin/Products">
+                                <i class="fa fa-flag"></i>
+                                Sản phẩm
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @{ var session = (UserLogin)Session[WebBookStore.Common.CommonConstants.USER_SESSION];}
+                        @*<span class="hidden-xs">@username</span>*@
+                        @if (session == null) { }
+                        @if (session != null)
+                        {
+                        if (session.MaNhom == "ADMIN")
+                        {<span class="hidden-xs">Quản trị</span>}
+                        if (session.MaNhom == "ACCOUNTANT")
+                        {<span class="hidden-xs">Kế toán</span>}
+                        if (session.MaNhom == "STAFF")
+                        {<span class="hidden-xs">Nhân viên</span>}
+                        if (session.MaNhom == "STOCKKEEPER")
+                        {<span class="hidden-xs">Quản lý kho</span>}
+                        if (session.MaNhom == "MODERATOR")
+                        {<span class="hidden-xs">Quản lý sách</span>}
+                        }
+
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="~/Account/Logout">
+                                <i class="fa fa-sign-out"></i>
+                                Đăng xuất
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+                <!--Admin menu -->
+                @*<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-wrench icon-white"></i> Admin <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a href="~/admin/supplier/">
+                                    <i class="fa fa-credit-card"></i> Suppliers
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/admin/master/">
+                                    <i class="fa fa-user"></i> Manage Users
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/admin/webaction">
+                                    <i class="fa fa-key"></i> Action Filters
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/admin/category">
+                                    <i class="fa fa-credit-card"></i> Category
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/admin/products">
+                                    <i class="fa fa-credit-card"></i> Product
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/admin/order">
+                                    <i class="fa fa-credit-card"></i> Orders
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="~/admin/permission/">
+                                    <i class="fa fa-lock"></i> Permission
+                                </a>
+                            </li>
+
+
+
+                            <li>
+                                <a href="~/admin/manage/setting">
+                                    <i class="fa fa-cog"></i> Settings
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>*@
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,98 @@
+﻿@using WebBookStore.Models.WebBookStore
+@model NGUOIDUNG
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Cập nhật</h4>
+<form action="/Admin/Products/Edit" class="form-horizontal" enctype="multipart/form-data" id="form-product-insert" method="post" role="form">
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="Id">Id</label>
+        <div class="col-md-8">
+            <input class="form-control" value="@Model.ID" type="number" data-val="true" data-val-required="The Id field is required." id="Id" name="Id" disabled />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="HoVaTen">Họ và tên</label>
+        <div class="col-md-8">
+            <input class="form-control" data-val="true" data-val-length="The field Name must be a string with a maximum length of 40."
+                   data-val-length-max="40" data-val-required="The Name field is required." id="HoVaTen" name="HoVaTen" type="text" value="@Model.HoVaTen" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="Email">Email</label>
+        <div class="col-md-8">
+            <input class="form-control" data-val="true" data-val-length="The field Name must be a string with a maximum length of 40."
+                   data-val-length-max="40" data-val-required="The Name field is required." id="Email" name="Email" type="text" value="@Model.Email" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="DiaChi">Địa chỉ</label>
+        <div class="col-md-8">
+            <input class="form-control" data-val="true" data-val-length="The field Name must be a string with a maximum length of 40."
+                   data-val-length-max="40" data-val-required="The Name field is required." id="DiaChi" name="DiaChi" type="text" value="@Model.DiaChi" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="SDT">SĐT</label>
+        <div class="col-md-8">
+            <input class="form-control" data-val="true" data-val-length="The field Name must be a string with a maximum length of 40."
+                   data-val-length-max="40" data-val-required="The Name field is required." id="SDT" name="SDT" type="text" value="@Model.SDT" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="TrangThai">Trạng thái</label>
+        <div class="col-md-8">
+            <select id="TrangThai" name="TrangThai">
+                @if ((int)Model.TrangThai == 0)
+                {<option value="@Model.TrangThai" selected="selected">Khoá</option>}
+                @if ((int)Model.TrangThai == 1)
+                {<option value="@Model.TrangThai" selected="selected">Kích hoạt</option>}
+
+                @foreach (var item in ViewBag.TrangThai)
+                {
+                    if (item == "0" && item != ((int)Model.TrangThai).ToString())
+                    {
+                        <option value="@item">Khoá</option>
+                    }
+                    if (item == "1" && item != ((int)Model.TrangThai).ToString())
+                    {
+                        <option value="@item">Kích hoạt</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="MaNhom">Mã nhóm</label>
+        <div class="col-md-8">
+            <select id="MaNhom" name="MaNhom">
+                <option value="@Model.MaNhom" selected="selected">@Model.NHOMND.TenNhom</option>
+                @foreach (NHOMND item in ViewBag.NhomND)
+                {
+                    if (item.ID != Model.MaNhom)
+                    {
+                    <option value="@item.ID">@item.TenNhom</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <button type="submit" onclick="form.action='/Admin/Products/Update'" class="btn btn-primary box-button col-md-offset-2">
+        Cập Nhật
+        <i class="fa fa-check icon-white"></i>
+    </button>
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Eumwqu3NKREk_prHUK1HpuHopk7liVmQvGx-vh5rUyNcQriwSgF2YGxzhMncl-oT03I55ZTT2Qr7g7Con-oFxBuVblelSPQb0DENJWt8fS3ZgP14nLopTLHXrs5_jxNjVQs0cRoIwsH1pBSykxYUQQtB1gACAHV4wXVtZZdF3bx5zEN2MahrLPJsLoojcSBQA" />
+    <input name="Available" type="hidden" value="false" />
+    <input name="Special" type="hidden" value="false" />
+    <input name="Latest" type="hidden" value="false" />
+</form>
+

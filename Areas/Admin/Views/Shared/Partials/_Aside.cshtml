@@ -1,0 +1,136 @@
+﻿@*@{
+        var username = "";
+        if (User.Identity.IsAuthenticated)
+        {
+            username = User.Identity.Name;
+        }
+        //var a = Url.RouteUrl(new {controller="",action="" });
+    }*@
+
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            @*<div class="pull-left image">
+                <img src="~/images/default-user-image.png" alt="@username Image" />
+                <img src="~/images/default-user-image.png" alt="username Image" />
+            </div>*@
+            @*<div class="pull-left info">
+                <p>@username</p>
+                <p>Admin</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>*@
+            @*<div class="pull-left info">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+
+
+
+
+                    }
+                    else
+                    {
+                        <a href="#"><i class="fa fa-circle text-success"></i> Offline</a>
+                    }
+
+                </div>*@
+        </div>
+        <!-- search form -->
+        @*<form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search..." />
+                    <span class="input-group-btn">
+                        <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </form>*@
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">BẢNG CHỨC NĂNG</li>
+
+            <li>
+                <a href="~/Admin/User">
+                    <i class="fa fa-list-alt"></i> <span>Tài khoản</span> <small class="label pull-right bg-green">new</small>
+                </a>
+            </li>
+            <li>
+                <a href="~/Admin/CNTT1_10_admin">
+                    <i class="fa fa-edit"></i> <span>Danh mục sách</span> <small class="label pull-right bg-green">new</small>
+                </a>
+            </li>
+
+            <li>
+                <a href="~/Admin/Supplier">
+                    <i class="fa fa-users"></i> <span>Nhà xuất bản</span> <small class="label pull-right bg-green">new</small>
+                </a>
+            </li>
+
+            <li>
+                <a href="~/Admin/Products">
+                    <i class="fa fa-barcode"></i> <span>Sản phẩm</span> <small class="label pull-right bg-green">new</small>
+                </a>
+            </li>
+            <li>
+                <a href="~/Admin/Order">
+                    <i class="fa fa-shopping-cart"></i> <span>Đơn Hàng</span> <small class="label pull-right bg-green">new</small>
+                </a>
+            </li>
+            <li>
+                <a href="~/Admin/Importstocks">
+                    <i class="fa fa-truck"></i> <span>Nhập Kho</span> <small class="label pull-right bg-green">new</small>
+                </a>
+            </li>
+            <li>
+                <a href="~/Admin/Message">
+                    <i class="fa fa-list-alt"></i><span>Tin nhắn</span> <small class="label pull-right bg-green">new</small>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file-pdf-o"></i>
+                    <span>Thống kê</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="~/Admin/Statistic/ByCategory"><i class="fa fa-circle-o"></i> Theo danh mục sách</a></li>
+                    <li><a href="~/Admin/Statistic/BySupplier"><i class="fa fa-circle-o"></i> Theo nhà xuất bản</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file-pdf-o"></i>
+                    <span>Doanh số</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="~/Admin/Revenue/ByProduct"><i class="fa fa-circle-o"></i> Theo cuốn</a></li>
+                    <li><a href="~/Admin/Revenue/ByCategory"><i class="fa fa-circle-o"></i> Theo danh mục</a></li>
+                    <li><a href="~/Admin/Revenue/BySupplier"><i class="fa fa-circle-o"></i> Theo nhà xuất bản</a></li>
+                    <li><a href="~/Admin/Revenue/ByCustomer"><i class="fa fa-circle-o"></i> Theo khách hàng</a></li>
+                    <li><a href="~/Admin/Revenue/ByYear"><i class="fa fa-circle-o"></i> Theo năm</a></li>
+                    <li><a href="~/Admin/Revenue/ByQuarter"><i class="fa fa-circle-o"></i> Theo quí</a></li>
+                    <li><a href="~/Admin/Revenue/ByMonth"><i class="fa fa-circle-o"></i> Theo tháng</a></li>
+                </ul>
+            </li>
+
+
+
+        </ul>
+    </section>
+
+    <!-- /.sidebar -->
+</aside>

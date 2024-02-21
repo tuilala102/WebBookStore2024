@@ -1,0 +1,82 @@
+﻿@using WebBookStore.Models.WebBookStore
+@model IEnumerable<NGUOIDUNG>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div> <a href="/Admin/User/Insert" class="btn btn-success btn-lg" id="create-supplier"> Thêm Mới <i class="fa fa-plus icon-white"></i></a></div>
+<form action="/Admin/User" method="post">
+    <table class="table" id="domainTable">
+        <thead>
+            <tr>
+                <th style="width: 3%;"><input type="checkbox" id="check-all-header" /></th>
+                <th style="width: 3%;">ID</th>
+                <th style="width: 15%;">Họ và tên</th>
+                <th style="width: 15%;">Email</th>
+                <th style="width: 8%;">Địa chỉ</th>
+                <th style="width: 8%;">SĐT</th>
+                <th style="width: 5%;">Trạng thái</th>
+                <th style="width: 10%;">Mã nhóm</th>
+                <th style="width: 10%;">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (NGUOIDUNG item in Model)
+            {
+            <tr>
+                <td><input type="checkbox" name="ids" value="@item.ID" /></td>
+                <td>@item.ID</td>
+                <td>@item.HoVaTen</td>
+                <td>@item.Email</td>
+                <td>@item.DiaChi</td>
+                <td>@item.SDT</td>
+                @if (item.TrangThai == 1)
+                {
+                    <td>Kích hoạt</td>
+                }
+                @if (item.TrangThai == 0)
+                {
+                     <td>Khoá</td>
+                }
+                <td>@item.MaNhom</td>
+                <td>
+                    <button id="supplier-edit" onclick="form.action = '/Admin/User/Edit/@item.ID'" class="btn btn-warning btn-sm"><i class="fa fa-pencil icon-white"></i></button>
+
+                    <button type="button" class="btn delete-asset btn-danger btn-sm" onclick="form.action = '/Admin/User/Delete/@item.ID'" data-toggle="modal" data-target="#confirmDelete" data-title="Xoá người dùng mã @item.ID" data-message="Bạn có muốn xoá người dùng mã @item.ID?">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+
+                    <button id="supplier-detail" onclick="form.action = '/Admin/User/Details/@item.ID'" class="btn btn-info btn-sm"><i class="fa fa-info"></i></button>
+
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-lg btn-danger" type="button" onclick="form.action = '/Admin/User/DeleteSelected'" data-toggle="modal" data-target="#confirmDelete" data-title="Xoá các người dùng đã chọn " data-message="Bạn có muốn xoá các người dùng đã chọn ?">
+        Xoá Người Dùng Được Chọn
+        <i class="glyphicon glyphicon-trash"></i>
+    </button>
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Eumwqu3NKREk_prHUK1Hps8UHttmJoy0oy4rIS2Pb5z_92GKZDVgWP9UnOdsIYt2BY1T-qkNFJDoZJA0ife7hMk61NDBfmqP4oKCspqhgimR6v9EMhb0i8gWrgLXsz6eCp_g7m6JPFA1TxBdJNU-dO6Bc5Mbdwuo2oEc5xrhjthy2_e_kg4yXLP5s-o-lHDzA" />
+</form><!-- Modal Dialog -->
+<div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Delete Parmanently</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure about this ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Huỷ</button>
+                <button type="button" class="btn btn-danger" id="confirm">Xoá</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

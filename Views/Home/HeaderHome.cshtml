@@ -1,0 +1,152 @@
+﻿@using WebBookStore.Common
+    <!-- ============================================== HEADER ============================================== -->
+<header class="header-style-1">
+    <div class="main-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-3 logo-holder " style="padding-top:5px">
+                    <!-- ============================================================= LOGO ============================================================= -->
+                    <div>
+                        <a href="~/Home">
+                            <img src="~/Assets/Content/img/products/images/logo.jpg"
+                                 style="height:50px;display:inline">
+                        </a>
+                    </div><!-- /.logo -->
+                    <!-- ============================================================= LOGO : END ============================================================= -->
+                </div><!-- /.logo-holder -->
+
+                <div class="col-xs-12 col-sm-12 col-md-6" style="padding-top:25px; padding-bottom:15px">
+                    <!-- ============================================================= SEARCH AREA ============================================================= -->
+                    @using (Html.BeginForm("TimKiemSanPham", "Home", FormMethod.Get))
+                    {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <input type="text" value="@ViewBag.Search" name="keywork"
+                               class="col-md-10" size="5"
+                               placeholder="Tìm kiếm sản phẩm" style="height:35px;"> 
+                        <button type="submit" class="btn btn-warning col-md-2">Tìm Kiếm</button>
+                    </div>
+                    </div>
+                    }
+
+                    <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+                </div><!-- /.top-search-holder -->
+
+                                <div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row" style="padding-top:12px">
+                                    <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+                                    <div class="dropdown dropdown-cart">
+                                        <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+                                            <div class="items-cart-inner" > 
+                                                <div class="total-price-basket">
+                                                   
+                                                </div>
+                                                <div class="basket" id="basketid">
+                                                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                                                </div>
+                                                <div class="basket-item-count" id="nn-cart-count"><span class="count"></span></div>
+                                            </div>
+                                        </a>
+
+                                        <ul class="dropdown-menu " style="width:500px !important">
+                                            <li>
+                                                <div class="cart-item product-summary" data-urlloadcart="/Cart/PartialCart"
+                                                     id="cart-item">
+                                                </div><!-- /.cart-item -->
+
+                                                <div class="clearfix"></div>
+                                                <hr>
+                                                <div class="clearfix cart-total">
+                                                    <div class="pull-right">
+
+                                                       
+
+                                                    </div>
+                                                    <div class="clearfix"></div>
+
+                                                    <a href="~/Cart/Index" class="btn btn-upper btn-primary btn-block m-t-20">
+                                                        Vào Giỏ Hàng
+                                                    </a>
+                                                </div><!-- /.cart-total-->
+                                            </li>
+                                        </ul><!-- /.dropdown-menu-->
+
+                                        <ul class="nav navbar-nav navbar-right" style="width:100px; height:48px; padding-left:20px">
+                                            <li class="dropdown " style="padding-right:5px">
+                                                @{ var session = (UserLogin)Session[WebBookStore.Common.CommonConstants.USER_SESSION]; }
+
+
+                                                <a href="#" id="id-account" class="dropdown-toggle"
+                                                   style="white-space: nowrap;width:70px;text-overflow: ellipsis;overflow:hidden;height:50px;padding-top:5px;"
+                                                   data-hover="dropdown" data-toggle="dropdown">
+
+                                                    @if (session == null)
+                                                    {
+                                    <img src="~/Assets/Content/img/products/images/admin_ano.jpg" class="img-responsive"
+                                         style="height:40px;display:inline" /><span>&nbsp;</span> }
+                                else
+                                {
+                <img src="~/Assets/Content/img/products/images/admin.jpg" class="img-responsive"
+                     style="height:40px;display:inline" /><span>&nbsp;</span>}
+
+
+                                                </a>
+
+                                                <ul class="dropdown-menu">
+
+
+                                                    @if (session == null)
+                                                    {
+                                    <li><a href="~/User/Login">Đăng nhập</a></li>
+                                                        <li><a href="~/User/Register">Đăng ký</a></li>
+ }
+                                                    else
+                                                    {
+                                    <li><a href="~/User/Logout">Đăng xuất</a></li>
+                                                        <li><a href="~/User/Edit?id=@session.ID">Thay đổi thông tin</a></li>
+                                                                           
+}
+
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div><!-- /.dropdown-cart -->
+                                    <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
+                                </div><!-- /.top-cart-row -->
+                                            </div><!-- /.row -->
+
+        </div><!-- /.container -->
+
+    </div><!-- /.main-header -->
+
+    <nav class="navbar navbar-default nav-custom-1" style="margin-bottom:10px; padding-left:100px">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav col-sm-9">
+                    <li class="active"><a href="~/Home" class="nav-text-head">Trang chủ</a></li>
+                    <li><a href="~/Product/SanPhamHeader/SalesOff" class="nav-text-head">Đặc biệt</a></li>
+                    <li><a href="~/Product/SanPhamHeader/SalesOff" class="nav-text-head"> Bán chạy nhất</a></li>
+                    <li><a href="~/Product/SanPhamHeader/SalesOff" class="nav-text-head">Sản phẩm mới</a></li>
+                    <li><a href="~/Product/SanPhamHeader/SalesOff" class="nav-text-head">Giảm giá</a></li>
+                    <li><a href="~/Product/SanPhamHeader/SalesOff" class="nav-text-head">Yêu thích</a></li>
+                    <li><a href="~/Product/SanPhamHeader/SalesOff" class="nav-text-head">Xem nhiều</a></li>
+
+                </ul>
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!--/.container-fluid -->
+    </nav>
+</header>
+
+<!-- ============================================== HEADER : END ============================================== -->

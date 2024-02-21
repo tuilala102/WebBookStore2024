@@ -1,0 +1,61 @@
+﻿@model List<WebBookStore.Models.WebBookStore.SANPHAM>
+<div class="sidebar-widget outer-bottom-small wow fadeInUp">
+    <h3 class="section-title">GIẢM GIÁ</h3>
+
+    <div class="sidebar-widget-body outer-top-xs">
+        @foreach (var p in Model)
+        {
+        <div class="item">
+            <div class="products special-product">
+                <div class="product">
+                    <div class="product-micro">
+                        <div class="row product-micro-row">
+                            <div class="col col-xs-5">
+                                <div class="product-image">
+                                    <div class="border-box">
+                                        <a href="~/Product/Detail/@p.ID" data-lightbox="image-1"
+                                           data-title="Nunc ullamcors">
+                                            <img src="~/Assets/images/@p.Anh"
+                                                 alt="" class="img-responsive" id="">
+                                            <div class="zoom-overlay"></div>
+                                        </a>
+                                    </div><!-- /.image -->
+                                    <div class="tag tag-micro sale">
+                                        <span>sale</span>
+                                    </div>
+
+
+                                </div><!-- /.product-image -->
+                            </div><!-- /.col -->
+                            <div class="col col-xs-7">
+                                <div class="product-info">
+                                    <h3 class="name">
+                                        <a href="~/Product/Detail/@p.ID">@p.TenSanPham</a>
+                                    </h3>
+                                    <div class="rating rateit-small hidden"></div>
+                                    <div class="product-price" style="margin-top:5px">
+                                        <span class="price numeral-init">
+                                            @Html.Raw(p.GiaSanPham * (1 - p.KhuyenMai))
+                                        </span>
+                                        @if (p.KhuyenMai > 0)
+                                            {
+                                        <span class="price-before-discount numeral-init" style="font-size:11px">@p.GiaSanPham</span>
+                                            }
+
+                                    </div><!-- /.product-price -->
+                                    <div class="add-to-cart">
+                                        <h4><a class="btn btn-warning" href="/them-gio-hang?productId=@p.ID&quantity=1">Thêm vào giỏ</a></h4>
+                                    </div>
+                                </div>
+                            </div><!-- /.col -->
+                        </div><!-- /.product-micro-row -->
+                    </div><!-- /.product-micro -->
+
+                </div>
+                <!--end of product-->
+            </div>
+        </div>
+        }
+    </div><!-- /.sidebar-widget-body -->
+
+</div><!-- /.sidebar-widget -->

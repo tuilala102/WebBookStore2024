@@ -1,0 +1,185 @@
+﻿@model WebBookStore.Models.WebBookStore.DONHANG
+@{
+     ViewBag.Title = "Detail";
+     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+     .stylish-input-group .input-group-addon {
+          background: white !important;
+     }
+
+     .stylish-input-group .form-control {
+          border-right: 0;
+          box-shadow: 0 0 0;
+          border-color: #ccc;
+     }
+
+     .stylish-input-group button {
+          border: 0;
+          background: transparent;
+     }
+
+     .input-customize {
+          height: 25px;
+     }
+
+     .total-cus {
+          float: right
+     }
+</style>
+<h4>Thông tin đơn hàng</h4>
+<hr />
+<div class="form-horizontal">
+
+     <div class="form-group">
+          <label class="control-label col-md-2">Tên khách hàng</label>
+          <div class="col-md-10">
+               @Model.NGUOIDUNG.HoVaTen
+          </div>
+     </div>
+
+     <div class="form-group">
+          <label class="control-label col-md-2">Ngày đặt hàng</label>
+          <div class="col-md-10">
+               @Html.FormatValue(Model.NgayDatHang, "{0:yyyy-MM-dd}")
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="control-label col-md-2">Số điện thoại</label>
+          <div class="col-md-10">
+               @Model.NGUOIDUNG.SDT
+          </div>
+     </div>
+
+     <div class="form-group">
+          <label class="control-label col-md-2">Ngày nhận hàng</label>
+          <div class="col-md-10">
+               @Html.FormatValue(Model.NgayNhanHang, "{0:yyyy-MM-dd}")
+          </div>
+     </div>
+
+     <div class="form-group">
+          <label class="control-label col-md-2">Email người nhận</label>
+          <div class="col-md-10">
+               @Model.EmailNguoiNhan
+          </div>
+     </div>
+
+     <div class="form-group">
+          <label class="control-label col-md-2">Địa chỉ</label>
+          <div class="col-md-10">
+               @Model.DiaChi
+          </div>
+     </div>
+
+     <div class="form-group">
+          <label class="control-label col-md-2">Thanh toán</label>
+          <div class="col-md-10">
+               <span class="numeral-init">@ViewBag.Total</span>
+          </div>
+     </div>
+
+     <div class="form-group">
+          <label class="control-label col-md-2">Mô tả</label>
+          <div class="col-md-10">
+               @Model.MoTa
+          </div>
+     </div>
+     <div class="form-group">
+          <label class="control-label col-md-2">Trạng thái</label>
+          <div class="col-md-10">
+               @if (Model.TinhTrang == 1)
+               {
+                    <b>Đã thanh toán </b>
+               }
+
+               else if (Model.TinhTrang == 0)
+               {
+                    <b>Chưa thanh toán </b>
+               }
+               else
+               {
+                    <b>Đã xoá</b>
+               }
+          </div>
+     </div>
+     <div class="">
+          <form action="@Url.RouteUrl(new { controller = "Order", action = "SetStatusOrder", area = "Admin" })" name="form-order-set" method="post">
+               <input type="hidden" name="idorder" value="@Model.ID" />
+               @if (Model.TinhTrang == 0)
+               {
+                    <input type="hidden" name="status" value="1" />
+                    <input type="submit" value="Xác nhận thanh toán" class="btn btn-success btn-set-paid" />
+                  
+               }
+               else if (Model.TinhTrang == 1)
+               {
+                    <input type="hidden" name="status" value="0" />
+                    <input type="submit" value="Chưa thanh toán" class="btn btn-warning btn-set-notok" />
+               }
+               else
+               {
+                    <input type="hidden" name="status" value="-1" />
+                    <input type="submit" value="Đã xoá" class="btn btn-danger btn-set-notok" disabled/>
+               }
+          </form>
+     </div>
+</div>
+<hr />
+<h4>Chi tiết đơn hàng</h4>
+<form method="post" action="" enctype="multipart/form-data">
+     <input type="hidden" name="orderid" value="@Model.ID" />
+     <div class="row">
+          <div class="col-sm-12">
+              <div class="col-sm-12" id="content-product-search" style="border-bottom:1px solid #cecbcb;">
+                  <div class="row head-table-customize" style="margin-top:10px;margin-bottom:8px">
+                      <div class="col-sm-3 col-xs-3"><b>Tên sách</b></div>
+                      <div class="col-sm-2 col-xs-2"><b>Giá</b></div>
+                      <div class="col-sm-2 col-xs-2"><b>Khuyến mãi (%)</b></div>
+                      <div class="col-sm-2 col-xs-2"><b>Số lượng</b></div>
+                      <div class="col-sm-2 col-xs-2"><b style="float:right">Thành tiền</b></div>
+                  </div>
+                  @foreach (var item in ViewBag.OrderDetail)
+                  {
+                      var discount = item.KhuyenMai * 100;
+                      var t_ = item.DonGia * item.SoLuong * (1 - item.KhuyenMai);
+                      var sl = item.SoLuong;
+                      var u = item.SANPHAM.SoLuong - sl;
+
+
+                      <div class="row ele-content" id="p-@item.MaSanPham" data-idp_="@item.MaSanPham" style="margin-top:3px;margin-bottom:2px">
+
+                          <input type="hidden" name="Product[]" value="@item.MaSanPham">
+                          <div class="col-sm-3 col-xs-3">@item.SANPHAM.TenSanPham</div>
+                          <div class="col-sm-2 col-xs-2">
+                              <input type="hidden" id="pr_@item.MaSanPham" name="Product[@item.MaSanPham][price]" value="@item.DonGia" />
+                              <span class="numeral-init">@item.DonGia</span>
+                          </div>
+                          <div class="col-sm-2 col-xs-2">
+                              <input type="number" name="Product[@item.MaSanPham][discount]" id="d-p-@item.MaSanPham" value="@discount.ToString().Replace(',', '.')" readonly />
+
+                          </div>
+                          <div class="col-sm-2 col-xs-2"><input type="number" name="Product[@item.MaSanPham][quantity]" id="q-p-@item.MaSanPham" value="@item.SoLuong" readonly /></div>
+                          <div class="col-sm-2 col-xs-2"><span id="tt_@item.MaSanPham" class="total-cus numeral-init">@t_</span></div>
+                      </div>
+
+                  }
+              </div>
+               <div class="row">
+                    <input type="hidden" id="index-ele" value="" />
+                    <div class="col-sm-12" id="show-total">
+                         <div class="col-sm-3 col-sm-offset-9">
+                              <input type="hidden" id="total-sum-input" name="total" value="@ViewBag.Total" />
+                              <span><b>Tổng tiền :&nbsp;</b></span><span id="sum-total" class="numeral-init nn-cart-total" style="font-weight:bold;font-size:large">@ViewBag.Total</span>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</form>
+
+@section scripts{
+     <script src="~/Scripts/TypeHeadAjax/bootstrap-typeahead.js"></script>
+     <script src="~/Scripts/set_up_importstock.js"></script>
+     <script src="~/Scripts/NumberJS/numeral.min.js"></script>
+}
